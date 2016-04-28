@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+"use strict";
+
+var ArgumentParser = require('argparse').ArgumentParser;
+var cli = new ArgumentParser({
+  prog:           "swagger2pdf",
+  version:        require('../package.json').version,
+  addHelp:        true
+});
+cli.addArgument(['-s', '--src'], {
+  help:   'Swagger spec JSON file.'
+});
+cli.addArgument(['-o', '--output'], {
+  help:   'Output path of the pdf file.'
+});
+
+var libPath = require('path');
+var libFs = require('fs');
+var libCp = require('child_process');
+var libYaml = require('yaml-js');
+var libCheerio = require('cheerio');
+var libPdf = require('html-pdf');
+
+var rootPath = process.cwd();
+var editorPath = libPath.join(__dirname, '..', 'swagger-editor');
+var editorSpecPath = libPath.join(editorPath, 'spec-files');
+var httpServerPath = libPath.join(__dirname, '..', 'node_modules', 'http-server', 'bin', 'http-server');
+var phantomPath = libPath.join(__dirname, '..', 'node_modules', 'phantomjs', 'bin', 'phantomjs');
+var phantomScript = libPath.join(__dirname, '..', 'src', 'phantom_exec.js');
+
+var parsePath = function(input) {
+  if (input == '-') return '-';
+  var output;
+  if (!(input != null)) {
+    return rootPath;
+  }
+  output = libPath.normalize(input);
+  if (output.length === 0) {
+    return rootPath;
+  }
+  if (output.charAt(0) !== '/') {
+    output = libPath.normalize(rootPath + '/./' + output);
+  }
+  if (output.length > 1 && output.charAt(output.length - 1) === '/') {
+    return output.substr(0, output.length - 1);
+  }
+  return output;
+};
+
+try {
+  var options = cli.parseArgs();
+  var src = parsePath(options.src);
+  var output = parsePath(options.output);
+
+  var srcStatus = libFs.statSync(src);
+  if (!srcStatus || !srcStatus.isFile()) {
+    process.stderr.write('Source swagger spec json not found: ' + src);
+  }
+
+  var outputStatus = libFs.statSync(output);
+  if (!outputStatus || !outputStatus.isDirectory()) {
+    process.stderr.write('Output dir not found: ' + output);
+  }
+  
+  var specJson = JSON.parse(libFs.readFileSync(src));
+  libFs.writeFileSync(libPath.join(editorSpecPath, 'default.yaml'), libYaml.dump(specJson));
+
+  var httpServerProcess = libCp.spawn(httpServerPath, [editorPath]);
+  httpServerProcess.stdout.on('data', function(data) {
+
+    console.log(data.toString());
+
+    var phantomHtml = '';
+    var phantomProcess = libCp.spawn(phantomPath, [phantomScript, 'http://127.0.0.1:8080']);
+    phantomProcess.stdout.on('data', function(data) {
+      phantomHtml += data;
+    });
+    phantomProcess.on('close', function(code) {
+      httpServerProcess.kill();
+      if (0 === code) {
+        phantomHtml = phantomHtml.toString();
+        console.log('phantom html got, size: ' + phantomHtml.length);
+libFs.writeFileSync(libPath.join(__dirname, '..', 'phantom.html'), phantomHtml);
+
+        var $ = libCheerio.load(phantomHtml);
+        var preview = $('.preview-wrapper').html();
+        console.log('preview html got, size: ' + preview.length);
+
+        libPdf.create(preview, {
+          directory: output,
+          format: 'A4',
+          type: 'pdf',
+          phantomPath: phantomPath,
+          timeout: 30000
+        }).toFile('api.pdf', function(err, result) {
+          if (err){
+            return process.stderr.write(err);
+          }
+          console.log(result);
+        });
+      } else {
+        process.stderr.write('phantomjs failed with code: ' + code + ', out: ' + phantomHtml);
+      }
+    });
+
+  });
+
+} catch (err) {
+  process.stderr.write((err.message ? err.message : err) + "\n");
+}

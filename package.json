@@ -1,0 +1,27 @@
+{
+  "name": "swagger-spec-to-pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agreatfool/swagger-spec-to-pdf.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agreatfool/swagger-spec-to-pdf/issues"
+  },
+  "homepage": "https://github.com/agreatfool/swagger-spec-to-pdf#readme",
+  "dependencies": {
+    "argparse": "^1.0.7",
+    "cheerio": "^0.20.0",
+    "html-pdf": "^2.0.1",
+    "http-server": "^0.9.0",
+    "phantomjs": "^2.1.7",
+    "yaml-js": "^0.1.3"
+  }
+}
