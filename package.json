@@ -18,10 +18,8 @@
   "homepage": "https://github.com/agreatfool/swagger-spec-to-pdf#readme",
   "dependencies": {
     "argparse": "^1.0.7",
-    "cheerio": "^0.20.0",
-    "html-pdf": "^2.0.1",
+    "electron-prebuilt": "^0.37.7",
     "http-server": "^0.9.0",
-    "phantomjs": "^2.1.7",
     "yaml-js": "^0.1.3"
   }
 }
