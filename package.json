@@ -1,7 +1,7 @@
 {
   "name": "swagger-spec-to-pdf",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dump swagger json spec into pdf document.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/agreatfool/swagger-spec-to-pdf.git"
   },
-  "author": "",
+  "maintainers": [
+    {
+      "name": "agreatfool",
+      "email": "nightghost5078@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/agreatfool/swagger-spec-to-pdf/issues"
