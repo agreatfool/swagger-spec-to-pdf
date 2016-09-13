@@ -68,7 +68,7 @@ try {
 
   // start http server serving the editor site
   var httpServerSpawned = false;
-  var httpServerProcess = libCp.spawn(httpServerPath, [editorPath, '-p 19849']);
+  var httpServerProcess = libCp.spawn(httpServerPath, [editorPath, '-p 19849', '-c -1']);
   httpServerProcess.stdout.on('data', function(data) {
     console.log(data.toString());
     httpServerSpawned = true;

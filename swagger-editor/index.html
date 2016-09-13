@@ -1,1 +1,40 @@
-<!doctype html><meta charset="utf-8"><title>Swagger Editor</title><meta name="description" content="Swagger Editor"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16"><link rel="stylesheet" href="styles/main.css"><link rel="stylesheet" href="styles/branding.css"><div class="total-wrapper" ui-view></div><script src="scripts/vendor.js"></script><script src="scripts/scripts.js"></script><script src="scripts/branding.js"></script>
+<!doctype html>
+<meta charset="utf-8"><title>Swagger Editor</title>
+<meta name="description" content="Swagger Editor">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/branding.css">
+<div class="total-wrapper" ui-view></div>
+<script src="scripts/vendor.js"></script>
+<script src="scripts/scripts.js"></script>
+<script src="scripts/branding.js"></script>
+<script type="text/javascript">
+    $("document").ready(function() {
+        setTimeout(function() {
+            var fileMenuTimer = setInterval(function() {
+                // open file menu
+                var fileMenu = $("#fileMenu");
+                if (fileMenu.length) {
+                    clearInterval(fileMenuTimer);
+                    fileMenu.click();
+
+                    // open example selector
+                    var exampleButton = $("#open-example");
+                    var exampleButtonTimer = setInterval(function() {
+                        if (exampleButton.length) {
+                            clearInterval(exampleButtonTimer);
+                            exampleButton.click();
+
+                            // click open button
+                            setTimeout(function() {
+                                $(".modal-large .btn-primary").click();
+                            }, 1000);
+                        }
+                    }, 300);
+                }
+            }, 300);
+        }, 1000);
+    });
+</script>

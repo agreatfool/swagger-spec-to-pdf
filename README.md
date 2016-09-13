@@ -31,6 +31,38 @@ If you want to use some other version:
 
 * clone the repo
 * replace the editor in ./swagger-editor
+* Add codes below into the bottom of file ***swagger-editor/index.html***
 * npm install .
+
+```javascript
+<script type="text/javascript">
+    $("document").ready(function() {
+        setTimeout(function() {
+            var fileMenuTimer = setInterval(function() {
+                // open file menu
+                var fileMenu = $("#fileMenu");
+                if (fileMenu.length) {
+                    clearInterval(fileMenuTimer);
+                    fileMenu.click();
+
+                    // open example selector
+                    var exampleButton = $("#open-example");
+                    var exampleButtonTimer = setInterval(function() {
+                        if (exampleButton.length) {
+                            clearInterval(exampleButtonTimer);
+                            exampleButton.click();
+
+                            // click open button
+                            setTimeout(function() {
+                                $(".modal-large .btn-primary").click();
+                            }, 1000);
+                        }
+                    }, 300);
+                }
+            }, 300);
+        }, 1000);
+    });
+</script>
+```
 
 Done, just use it.
