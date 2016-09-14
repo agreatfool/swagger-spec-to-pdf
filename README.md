@@ -1,6 +1,6 @@
 # swagger-spec-to-pdf
 
-[![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg?maxAge=2592000)]() [![npm](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)]() [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
+[![NPM version](https://img.shields.io/npm/v/swagger-spec-to-pdf.svg?style=flat)](https://npmjs.org/package/swagger-spec-to-pdf) [![NPM downloads](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)]() [![License](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 
 ### Usage:
     usage: swagger2pdf [-h] [-v] [-s SRC] [-o OUTPUT]
