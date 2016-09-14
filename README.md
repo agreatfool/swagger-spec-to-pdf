@@ -13,7 +13,9 @@
                             Output path of the pdf file.
 
 ### Exec:
-./bin/swagger2pdf -s ./swagger-spec-sample.json -o ./dump/
+./bin/swagger2pdf -s ./swagger-spec-sample.json -o ./dump/    
+&    
+Wait several seconds    
 
 ### Sample:
 See: ./dump/swagger-spec-sample.pdf
