@@ -1,5 +1,7 @@
 # swagger-spec-to-pdf
 
+[![npm](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)]()
+
 ### Usage:
     usage: swagger2pdf [-h] [-v] [-s SRC] [-o OUTPUT]
 
