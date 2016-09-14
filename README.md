@@ -1,5 +1,7 @@
 # swagger-spec-to-pdf
 
+[![NPM version](https://img.shields.io/npm/v/swagger-spec-to-pdf.svg?style=flat)](https://npmjs.org/package/swagger-spec-to-pdf) [![NPM downloads](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf) [![License](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf)
+
 ### Usage:
     usage: swagger2pdf [-h] [-v] [-s SRC] [-o OUTPUT]
 
@@ -11,7 +13,9 @@
                             Output path of the pdf file.
 
 ### Exec:
-./bin/swagger2pdf -s ./swagger-spec-sample.json -o ./dump/
+./bin/swagger2pdf -s ./swagger-spec-sample.json -o ./dump/    
+&    
+Wait several seconds    
 
 ### Sample:
 See: ./dump/swagger-spec-sample.pdf
