@@ -1,6 +1,6 @@
 {
   "name": "swagger-spec-to-pdf",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Dump swagger json spec into pdf document.",
   "main": "index.js",
   "scripts": {
