@@ -67,7 +67,14 @@ try {
     if (error) {
       throw error;
     }
-    httpServerPath = libPath.join(stdout.trim(), 'http-server');
+    var tmpPath = libPath.join(stdout.trim(), 'http-server');
+    libFs.exists(tmpPath, function(exists) {
+      if (!exists) {
+        httpServerPath = libPath.join(__dirname, '..', '..', 'http-server', 'bin', 'http-server');
+      } else {
+        httpServerPath = tmpPath;
+      }
+    });
   });
 
   // read json spec & dump converted yaml into swagger editor spec dir
