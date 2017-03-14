@@ -2,6 +2,12 @@
 
 [![NPM version](https://img.shields.io/npm/v/swagger-spec-to-pdf.svg?style=flat)](https://npmjs.org/package/swagger-spec-to-pdf) [![NPM downloads](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf) [![License](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf)
 
+### Attention:
+Please `DO NOT` install this module as a global module. 
+Think this module as a small tool in your project.
+Install it locally, and use it locally.
+Several bugs related to global installation, and have not been fixed yet.
+
 ### Usage:
     usage: swagger2pdf [-h] [-v] [-s SRC] [-o OUTPUT]
 
