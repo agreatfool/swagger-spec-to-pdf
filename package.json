@@ -4,7 +4,11 @@
   "description": "Dump swagger json spec into pdf document.",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npm i -g http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "swagger2pdf": "./bin/swagger2pdf"
   },
   "repository": {
     "type": "git",
@@ -24,7 +28,6 @@
   "dependencies": {
     "argparse": "^1.0.7",
     "electron-prebuilt": "^0.37.7",
-    "http-server": "^0.9.0",
     "yaml-js": "^0.1.3"
   }
 }

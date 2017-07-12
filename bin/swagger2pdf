@@ -22,7 +22,7 @@ var libYaml = require('yaml-js');
 var rootPath = process.cwd();
 var editorPath = libPath.join(__dirname, '..', 'swagger-editor');
 var editorSpecPath = libPath.join(editorPath, 'spec-files');
-var httpServerPath = null; // not initialized here
+var httpServerPath = 'http-server';
 var electronScript = libPath.join(__dirname, '..', 'src', 'electron_exec.js');
 var electronPath = require('electron-prebuilt');
 
@@ -63,19 +63,19 @@ try {
   }
 
   // ensure http-server bin path, since npm v3.x no longer support nested node_modules dir
-  libCp.exec('npm bin', function(error, stdout) {
-    if (error) {
-      throw error;
-    }
-    var tmpPath = libPath.join(stdout.trim(), 'http-server');
-    libFs.exists(tmpPath, function(exists) {
-      if (!exists) {
-        httpServerPath = libPath.join(__dirname, '..', '..', 'http-server', 'bin', 'http-server');
-      } else {
-        httpServerPath = tmpPath;
-      }
-    });
-  });
+  // libCp.exec('npm bin', function(error, stdout) {
+  //   if (error) {
+  //     throw error;
+  //   }
+  //   var tmpPath = libPath.join(stdout.trim(), 'http-server');
+  //   libFs.exists(tmpPath, function(exists) {
+  //     if (!exists) {
+  //       httpServerPath = libPath.join(__dirname, '..', '..', 'http-server', 'bin', 'http-server');
+  //     } else {
+  //       httpServerPath = tmpPath;
+  //     }
+  //   });
+  // });
 
   // read json spec & dump converted yaml into swagger editor spec dir
   var specJson = JSON.parse(libFs.readFileSync(src));
