@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/swagger-spec-to-pdf.svg?style=flat)](https://npmjs.org/package/swagger-spec-to-pdf) [![NPM downloads](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf) [![License](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf)
 
-### Attention:
+### Install:
 npm install -g swagger-spec-to-pdf
 
 ### Usage:
