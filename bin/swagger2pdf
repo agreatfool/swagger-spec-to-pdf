@@ -90,7 +90,11 @@ try {
     }
     clearInterval(httpServerPathWatcher);
 
-    httpServerProcess = libCp.spawn(httpServerPath, [editorPath, '-p 19849', '-c -1']);
+    if (process.platform === 'win32') {
+      httpServerProcess = libCp.spawn(process.env.comspec, ['/c', httpServerPath, editorPath, '-p 19849', '-c -1']);
+    } else {
+      httpServerProcess = libCp.spawn(httpServerPath, [editorPath, '-p 19849', '-c -1']);
+    }
     httpServerProcess.stdout.on('data', function(data) {
       console.log(data.toString());
       httpServerSpawned = true;
