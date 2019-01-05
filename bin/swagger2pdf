@@ -8,7 +8,15 @@ var cli = new ArgumentParser({
   addHelp:        true
 });
 cli.addArgument(['-s', '--src'], {
-  help:   'Swagger spec JSON file.'
+  help:   'Swagger spec file.'
+});
+cli.addArgument(['-j', '--json'], {
+  help:   'Spec file in JSON format (default).',
+  nargs:  0,
+});
+cli.addArgument(['-y', '--yaml'], {
+  nargs: 0,
+  help:   'Spec file in YAML format.',
 });
 cli.addArgument(['-o', '--output'], {
   help:   'Output path of the pdf file.'
@@ -49,11 +57,18 @@ try {
   var options = cli.parseArgs();
   var src = parsePath(options.src);
   var output = parsePath(options.output);
+  var inputJson = !options.yaml;
+
+  // ensure only a single input format is selected, default to JSON otherwise
+  if (options.yaml && options.json) {
+    process.stderr.write("Both JSON and YAML selected, continuing as JSON");
+    inputJson = true;
+  }
 
   // ensure source file
   var srcStatus = libFs.statSync(src);
   if (!srcStatus || !srcStatus.isFile()) {
-    process.stderr.write('Source swagger spec json not found: ' + src);
+    process.stderr.write('Source swagger spec not found: ' + src);
   }
 
   // ensure output dir
@@ -77,9 +92,14 @@ try {
   //   });
   // });
 
-  // read json spec & dump converted yaml into swagger editor spec dir
-  var specJson = JSON.parse(libFs.readFileSync(src));
-  libFs.writeFileSync(libPath.join(editorSpecPath, 'default.yaml'), libYaml.dump(specJson));
+  if (inputJson) {
+    // read json spec & dump converted yaml into swagger editor spec dir
+    var specJson = JSON.parse(libFs.readFileSync(src));
+    libFs.writeFileSync(libPath.join(editorSpecPath, 'default.yaml'), libYaml.dump(specJson));
+  } else {
+    // if the source file is in YAML format already, simply copy it to the spec dir
+    libFs.copyFileSync(src, libPath.join(editorSpecPath, 'default.yaml'));
+  }
 
   // start http server serving the editor site
   var httpServerSpawned = false;
