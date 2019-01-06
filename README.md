@@ -6,30 +6,45 @@
 npm install -g swagger-spec-to-pdf
 
 ### Usage:
-    usage: swagger2pdf [-h] [-v] [-s SRC] [-o OUTPUT]
+
+    usage: swagger2pdf [-h] [-v] [-s SRC] [-j] [-y] [-o OUTPUT]
 
     Optional arguments:
       -h, --help            Show this help message and exit.
       -v, --version         Show program's version number and exit.
       -s SRC, --src SRC     Swagger spec JSON file.
+      -j, --json            Spec file in JSON format (default).
+      -y, --yaml            Spec file in YAML format.
       -o OUTPUT, --output OUTPUT
                             Output path of the pdf file.
 
 ### Exec:
-swagger2pdf -s ./swagger-spec-sample.json -o ./dump/    
-&    
-Wait several seconds    
+
+For JSON files:
+
+swagger2pdf -j -s ./swagger-spec-sample.json -o ./dump/
+
+For YAML files:
+
+swagger2pdf -y -s ./swagger-spec-sample.yaml -o ./dump/
+
+In either case, the execution will take several seconds to complete.
 
 ### Sample:
 See: ./dump/swagger-spec-sample.pdf
 
 ### Appendix:
 #### Working Theory
+
+In the case of a JSON input file:
+
 1. Read source swagger json spec
 2. Convert it into yaml format
 3. Dump yaml into the spec dir of swagger editor
 4. Use electron to render swagger editor page (nicely formatted api page)
 5. Dump the page into pdf
+
+In the case of a YAML input file, steps 1-2 are bypassed.
 
 #### Swagger Editor
 Version of swagger editor embedded is: 2.9.9   
