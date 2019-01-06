@@ -33,6 +33,9 @@ In either case, the execution will take several seconds to complete.
 ### Sample:
 See: ./dump/swagger-spec-sample.pdf
 
+### Change log:
+#### 1.1.0: Support swagger spec files in YAML format, see: [PR#13](https://github.com/agreatfool/swagger-spec-to-pdf/pull/13/files).
+
 ### Appendix:
 #### Working Theory
 
