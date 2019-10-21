@@ -26,8 +26,9 @@
   },
   "homepage": "https://github.com/agreatfool/swagger-spec-to-pdf#readme",
   "dependencies": {
-    "argparse": "^1.0.7",
-    "electron-prebuilt": "^1.4.13",
-    "yaml-js": "^0.2.3"
+    "argparse": "1.0.10",
+    "electron": "6.0.12",
+    "swagger-editor-dist": "3.6.37",
+    "yaml-js": "0.2.3"
   }
 }

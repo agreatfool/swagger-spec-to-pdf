@@ -1,11 +1,13 @@
 # swagger-spec-to-pdf
 
-[![NPM version](https://img.shields.io/npm/v/swagger-spec-to-pdf.svg?style=flat)](https://npmjs.org/package/swagger-spec-to-pdf) [![NPM downloads](https://img.shields.io/npm/dm/localeval.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf) [![License](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://npmjs.org/package/swagger-spec-to-pdf)
+[![codebeat badge](https://codebeat.co/badges/d512c584-5af6-4cf8-80a8-7210662487a4)](https://codebeat.co/projects/github-com-maxw1337-swagger-spec-to-pdf-master)
+![dependabot badge](https://api.dependabot.com/badges/status?host=github&repo=maxw1337/swagger-spec-to-pdf)
 
-### Install:
-npm install -g swagger-spec-to-pdf
+## Install
 
-### Usage:
+`npm install -g swagger-spec-to-pdf`
+
+### Usage
 
     usage: swagger2pdf [-h] [-v] [-s SRC] [-j] [-y] [-o OUTPUT]
 
@@ -18,7 +20,7 @@ npm install -g swagger-spec-to-pdf
       -o OUTPUT, --output OUTPUT
                             Output path of the pdf file.
 
-### Exec:
+### Exec
 
 For JSON files:
 
@@ -30,13 +32,18 @@ swagger2pdf -y -s ./swagger-spec-sample.yaml -o ./dump/
 
 In either case, the execution will take several seconds to complete.
 
-### Sample:
+### Sample
+
 See: ./dump/swagger-spec-sample.pdf
 
-### Change log:
-#### 1.1.0: Support swagger spec files in YAML format, see: [PR#13](https://github.com/agreatfool/swagger-spec-to-pdf/pull/13/files).
+### Change log
 
-### Appendix:
+#### 1.1.0
+
+Support swagger spec files in YAML format, see: [PR#13](https://github.com/agreatfool/swagger-spec-to-pdf/pull/13/files).
+
+### Appendix
+
 #### Working Theory
 
 In the case of a JSON input file:
@@ -50,44 +57,13 @@ In the case of a JSON input file:
 In the case of a YAML input file, steps 1-2 are bypassed.
 
 #### Swagger Editor
-Version of swagger editor embedded is: 2.9.9   
-You can get it from: [here](https://github.com/swagger-api/swagger-editor)   
+
+Version of swagger editor embedded is: 3.6.37
+You can get it from: [here](https://github.com/swagger-api/swagger-editor/releases/latest)
 If you want to use some other version:
 
 * clone the repo
-* replace the editor in ./swagger-editor
-* Add codes below into the bottom of file ***swagger-editor/index.html***
-* npm install .
-
-```javascript
-<script type="text/javascript">
-    $("document").ready(function() {
-        setTimeout(function() {
-            var fileMenuTimer = setInterval(function() {
-                // open file menu
-                var fileMenu = $("#fileMenu");
-                if (fileMenu.length) {
-                    clearInterval(fileMenuTimer);
-                    fileMenu.click();
-
-                    // open example selector
-                    var exampleButton = $("#open-example");
-                    var exampleButtonTimer = setInterval(function() {
-                        if (exampleButton.length) {
-                            clearInterval(exampleButtonTimer);
-                            exampleButton.click();
-
-                            // click open button
-                            setTimeout(function() {
-                                $(".modal-large .btn-primary").click();
-                            }, 1000);
-                        }
-                    }, 300);
-                }
-            }, 300);
-        }, 1000);
-    });
-</script>
-```
+* change version of swagger-editor-dist in package.json
+* npm install
 
 Done, just use it.
